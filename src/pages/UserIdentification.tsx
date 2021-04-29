@@ -2,23 +2,32 @@ import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, View, Text, TextInput, KeyboardAvoidingView, Platform } from "react-native";
 import colors from '../styles/colors';
 import { Button } from "../Components/Button"
+import { useNavigation } from '@react-navigation/native';
 
 export const UserIdentification = () => {
+
+    const handleSubmit = () => {
+        navigation.navigate("Confirmation");
+    }
 
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
     const [name, setIsName] = useState<string>();
 
-    const handleInputChange = (value : string)=>{
+    const navigation = useNavigation();
+
+
+
+    const handleInputChange = (value: string) => {
         setIsFilled(!!value);
         setIsName(value);
     }
 
-    const handleInputBlur = ()=>{
+    const handleInputBlur = () => {
         setIsFocused(false);
     }
 
-    const handleInputFocus = ()=>{
+    const handleInputFocus = () => {
         setIsFocused(true);
     }
 
@@ -31,10 +40,10 @@ export const UserIdentification = () => {
                         <Text style={styles.title}>Como podemos {"\n"} chamar você?
                     <Text style={styles.emoji}>{"\n\n"}{isFilled ? "😁" : " 🤔"}</Text>
                         </Text>
-                        <TextInput style={[styles.input, (isFocused || isFilled) &&{borderColor:colors.green}]} placeholder="Digite seu Nome" onBlur={handleInputBlur} onFocus={handleInputFocus} onChangeText={handleInputChange}/>
+                        <TextInput style={[styles.input, (isFocused || isFilled) && { borderColor: colors.green }]} placeholder="Digite seu Nome" onBlur={handleInputBlur} onFocus={handleInputFocus} onChangeText={handleInputChange} />
 
                         <View style={styles.footer}>
-                            <Button title="Confirmar" />
+                            <Button title="Confirmar" onPress={handleSubmit}/>
                         </View>
                     </View>
                 </KeyboardAvoidingView>

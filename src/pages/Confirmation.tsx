@@ -14,7 +14,7 @@ export const Confirmation = () => {
                 <Text style={styles.subtitle}>Agora vamos começar a cuidar de suas plantinhas com muito carinho!</Text>
 
                 <View style={styles.footer}>
-                    <Button title="Confirmar" />
+                    <Button title="Começar" />
                 </View>
             </View>
 
