@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, TextInput, KeyboardAvoidingView, Platform } from "react-native";
+import { StyleSheet, SafeAreaView, View, Text, TextInput, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard} from "react-native";
 import colors from '../styles/colors';
 import { Button } from "../Components/Button"
 import { useNavigation } from '@react-navigation/native';
 
-export const UserIdentification = () => {
+export const UserIdentification = () => { 
 
     const handleSubmit = () => {
         navigation.navigate("Confirmation");
@@ -35,6 +35,7 @@ export const UserIdentification = () => {
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
                 <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.form}>
 
                         <Text style={styles.title}>Como podemos {"\n"} chamar você?
@@ -46,8 +47,10 @@ export const UserIdentification = () => {
                             <Button title="Confirmar" onPress={handleSubmit}/>
                         </View>
                     </View>
+                    </TouchableWithoutFeedback>
                 </KeyboardAvoidingView>
             </View>
+           
 
 
         </SafeAreaView>

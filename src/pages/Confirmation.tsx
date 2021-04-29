@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, Text, View } from "react-native";
 import { Button } from "../Components/Button";
@@ -5,6 +6,11 @@ import colors from '../styles/colors';
 
 
 export const Confirmation = () => {
+    const navigation = useNavigation();
+
+    const handleNavigation=()=>{
+        navigation.navigate("PlantSelect");
+    }
     return (
         <SafeAreaView style={styles.container}>
 
@@ -14,7 +20,7 @@ export const Confirmation = () => {
                 <Text style={styles.subtitle}>Agora vamos começar a cuidar de suas plantinhas com muito carinho!</Text>
 
                 <View style={styles.footer}>
-                    <Button title="Começar" />
+                    <Button title="Começar" onPress={handleNavigation}/>
                 </View>
             </View>
 
