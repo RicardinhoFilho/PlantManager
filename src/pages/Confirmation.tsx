@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import{ StyleSheet, SafeAreaView, Text, View} from "react-native";
-import {Button} from "../Components/Button";
+import { StyleSheet, SafeAreaView, Text, View } from "react-native";
+import { Button } from "../Components/Button";
 import colors from '../styles/colors';
 
 
-export const  Confirmation = ()=>{
+export const Confirmation = () => {
     return (
         <SafeAreaView style={styles.container}>
 
@@ -12,11 +12,13 @@ export const  Confirmation = ()=>{
                 <Text style={styles.emoji}>😁</Text>
                 <Text style={styles.title}>Prontinho</Text>
                 <Text style={styles.subtitle}>Agora vamos começar a cuidar de suas plantinhas com muito carinho!</Text>
+
+                <View style={styles.footer}>
+                    <Button title="Confirmar" />
+                </View>
             </View>
 
-            <View style={styles.footer}>
-                <Button title="title"/>
-            </View>
+
 
         </SafeAreaView>
     )
@@ -24,27 +26,37 @@ export const  Confirmation = ()=>{
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
         alignItems: "center",
-        justifyContent:"space-around"
+        justifyContent: "space-around"
+    },
+    content: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        padding: 30
     },
     title: {
-        fontSize:22,
+        fontSize: 22,
         textAlign: "center",
-        color:colors.heading
+        color: colors.heading
 
     },
     subtitle: {
-       textAlign: "center",
-       fontSize: 18,
-       paddingHorizontal: 20,
-       color: colors.heading
+        textAlign: "center",
+        fontSize: 18,
+        marginTop:8,
+        paddingHorizontal: 20,
+        color: colors.heading
     },
-    emoji:{
-        fontSize:32,
+    emoji: {
+        fontSize: 70,
         textAlign: "center",
     },
     footer: {
-        width:"100%"
+        width: "100%",
+        marginTop:20,
+        paddingHorizontal: 50
     }
 })
