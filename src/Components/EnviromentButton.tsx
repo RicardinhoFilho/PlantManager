@@ -28,10 +28,12 @@ const styles = StyleSheet.create({
         width: 76,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 12
+        borderRadius: 12,
+        marginRight:5
     },
     buttonActive: {
         backgroundColor:colors.green_light,
+        color:colors.green_dark
         
     },
     textButton: {
