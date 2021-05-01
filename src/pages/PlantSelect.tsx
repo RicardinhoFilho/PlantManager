@@ -6,6 +6,7 @@ import { EnviromentButton } from '../Components/EnviromentButton';
 import api from '../services/api';
 import { PlantCardPrimary } from '../Components/PlantCardPrimary';
 import { Load } from "../Components/Load"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export const PlantSelect = () => {
 
     interface EnvironmentProps {
@@ -73,6 +74,8 @@ export const PlantSelect = () => {
         fetchPlants()
     }
 
+   
+
     useEffect(() => {
         async function fetchEnviroment() {
             const { data } = await api.get(`plants_environments?_sort=title`);
@@ -88,7 +91,7 @@ export const PlantSelect = () => {
     }, []);
 
 
-    if (loading) return <Load />
+     if (loading) return <Load />
 
     return (
 

@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, TextInput, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard} from "react-native";
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Alert,SafeAreaView, View, Text, TextInput, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard} from "react-native";
 import colors from '../styles/colors';
 import { Button } from "../Components/Button"
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const UserIdentification = () => { 
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
+
+        if(!name) return Alert.alert("Me diz como chamar voce 😢");
+
+        await AsyncStorage.setItem("@plantmanagerUser",name)
+        
         navigation.navigate("Confirmation");
     }
 
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
-    const [name, setIsName] = useState<string>();
+    const [name, setIsName] = useState<string>( );
 
     const navigation = useNavigation();
-
+useEffect(() => {
+    async function getUser(){
+        const user = await AsyncStorage.getItem("@plantmanagerUser")|| "";
+        setIsName(user)
+    }
+    
+})
 
 
     const handleInputChange = (value: string) => {
@@ -41,7 +53,7 @@ export const UserIdentification = () => {
                         <Text style={styles.title}>Como podemos {"\n"} chamar você?
                     <Text style={styles.emoji}>{"\n\n"}{isFilled ? "😁" : " 🤔"}</Text>
                         </Text>
-                        <TextInput style={[styles.input, (isFocused || isFilled) && { borderColor: colors.green }]} placeholder="Digite seu Nome" onBlur={handleInputBlur} onFocus={handleInputFocus} onChangeText={handleInputChange} />
+                        <TextInput value={name}style={[styles.input, (isFocused || isFilled) && { borderColor: colors.green }]} placeholder="Digite seu Nome" onBlur={handleInputBlur} onFocus={handleInputFocus} onChangeText={handleInputChange} />
 
                         <View style={styles.footer}>
                             <Button title="Confirmar" onPress={handleSubmit}/>
